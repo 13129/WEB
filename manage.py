@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+#测试#
 def main ():
 	os.environ.setdefault ('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 	try:
