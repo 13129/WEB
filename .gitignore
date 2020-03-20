@@ -1,4 +1,4 @@
-
+*.txt
 WEB/.gitignore
 migrations/
 !migrations/__init__.py
