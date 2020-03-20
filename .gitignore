@@ -1,3 +1,8 @@
+
+WEB/.gitignore
+migrations/
+!migrations/__init__.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -5,7 +10,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+# If you are using PyCharm #
+.git
+.idea
 # Distribution / packaging
 .Python
 build/
@@ -57,6 +64,13 @@ coverage.xml
 
 # Django stuff:
 *.log
+*.pot
+*.pyc
+__pycache__
+media
+
+
+local_settings.py
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -127,3 +141,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+@charset "utf-8";
+#focusslide > div > div.item.active > span{
+    background-color:black;
+    opacity: 0.8;
+    height: 30px;
+    width: 100%;
+    left: 0;
+    bottom: 0.1px;
+    text-align: left;
+    color: white;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    position: absolute;
+    padding-top: 5px;
+    padding-left: 20px;
+
+}
+
+#calendar,#weather{
+    color: black;
+    line-height: 24px;
+    text-align: left;
+}
+#calendar li:nth-child(1){
+    float: left;
+}
+#weather li{
+}
+
+ #weather  li strong {
+    width: 5px;
+    height: 2px;
+    border: solid 1px blue;
+    background: blue;
+    color: white;
+}
+#weather  li img{
+    background-repeat:no-repeat;
+    padding-top: 0px;
+    padding-left: 0px;
+    width: 21px;
+    height: 18px;
+}
+.glyphicon-time:before,.glyphicon-comment:before,.glyphicon-eye-open:before{
+    color: black;
+}
+#registModal > div > div > form > div.modal-footer > button.btn.btn-primary > a{
+    color: white;
+    padding-right: 0;
+}

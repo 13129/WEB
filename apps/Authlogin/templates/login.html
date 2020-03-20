@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+</head>
+<body>
+<p><a href="{% url 'blog:index' %}">主页</a>
+  {% if user.is_authenticated %}{# 用户已登录时不显示 #}
+    Hello, {{ user.username }}.
+    <a href="{% url 'Authlogin:logout' %}">登出</a>
+  {% else %}
+    <a href="{% url 'Authlogin:register' %}">注册</a>
+    <a href="{% url 'Authlogin:login' %}">登录</a>
+  {% endif %}
+</p>
+
+{% if form.errors %}
+    <p>您的用户名和密码不匹配,请再试一遍.</p>
+{% endif %}
+    
+<form method="post" action="{% url 'Authlogin:login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name="submit">登录</button>
+  <input type="hidden" name="next" value="{% url 'blog:index' %}" />
+</form>
+</body>
+</html>

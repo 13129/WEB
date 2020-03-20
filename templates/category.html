@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ cname }}{% endblock %}
+
+<!--文章列表-->
+{% block content %}
+    <section class="container">
+        <div class="content-wrap">
+            <div class="content">
+                <div class="title">
+                    <h3>{{ cname }}</h3>
+                </div>
+                {% include 'components/blog_active.html' %}
+            </div>
+        </div>
+        {% include 'components/aside_right.html' %}
+    </section>
+{% endblock %}
+

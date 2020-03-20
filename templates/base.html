@@ -1,0 +1,106 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nprogress.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lbb.css' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/icon/icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/icon/favicon.ico' %}">
+    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/nprogress.js' %}"></script>
+    <script src="{% static 'js/jquery.lazyload.min.js' %}"></script>
+    {# django-ckeditor代码高亮 #}
+    <link rel="stylesheet" href="/static/css/googlecode.css">
+    <script src="/static/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<!--[if gte IE 9]>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/html5shiv.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/respond.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/selectivizr-min.js' %}" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+    <script>window.location.href = 'upgrade-browser.html';</script>
+<![endif]-->
+</head>
+
+<body class="user-select">
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.ias.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<header class="header">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="header-topbar hidden-xs link-border">
+                <ul class="site-nav topmenu">
+                    <!--快捷标签-->
+                    <li><a href="{% url 'LigthApp:sumall' %}">应用</a></li>
+                    <li><a href="{% url 'blog:tag' %}">标签云</a></li>
+                    <!-- 关注我 -->
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
+                        <ul class="dropdown-menu header-topbar-dropdown-menu">
+                            <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i>微信</a></li>
+                            <li><a href="/#/" rel="nofollow"><i class="fa fa-weibo"></i> 微应用</a></li>
+                            <li><a data-toggle="modal" data-target="#areDeveloping" rel="nofollow"><i class="fa fa-rss"></i> RSS</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            <!--登录注册登出-->
+                <p><a href="{% url 'blog:index' %}">主页</a>
+                    {% if user.is_authenticated %}{# 用户未登录时显示 #}
+                        欢迎, {{ user.username }}
+                        <a href="{% url 'Authlogin:logout' %}">登出</a>
+                        {% if user.is_staff %}
+                        <a href="admin/">站点</a>
+                        {% endif %}
+
+                    {% else %}
+                        <a href="{% url 'Authlogin:register' %}" class="regist">注册</a>
+                        <a href="{% url 'Authlogin:login' %}" class="login">登录</a>
+                    {% endif %}</p></div>
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false">
+                    <span class="sr-only">sss</span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="logo hvr-bounce-in"><a href="" title=""><img src="{% static 'images/logo.png' %}" alt=""></a>
+                </h1>
+            </div>
+            <!--导航栏 -->
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden-index active"><a data-cont="XJC首页" href="{% url 'blog:index' %}">首页</a></li>
+                    {% spaceless %}
+                        {% for category in allcategory %}
+                            <li><a href="{% url 'blog:cate' category.id %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    {% endspaceless %}
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+    {% block content %}
+    {% endblock %}
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2020 <a href="">......com</a> &nbsp; <a href="#" target="_blank" rel="nofollow">备案号----</a> &nbsp;
+            &nbsp; <a href="///" target="_blank">sasd</a></p>
+    </div>
+    <div id="gotop"><a class="gotop"></a></div>
+</footer>
+{% include 'components/weixin.html' %}
+</body>
+</html>

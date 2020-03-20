@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}标签云{% endblock %}
+{% block content %}
+    <section class="container container-page">
+        {% include 'components/tags_left.html' %}
+        <div class="content">
+            <header class="article-header">
+                <h1 class="article-title">标签云</h1>
+            </header>
+            <ul class="plinks ptags">
+            {% for tag in all_tags %}
+                <li><a href="" title="" target="_blank">{{ tag.0 }} <span class="badge">{{ tag.1 }}</span></a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endblock %}

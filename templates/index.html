@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}XJC博客{% endblock %}
+<!--文章检索结果-->
+{% block content %}
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            <!--轮播图片-->
+            <div id="focusslide" class="carousel slide" data-ride="carousel" data-interval="4500">
+                <ol class="carousel-indicators">
+                    <li data-target="#focusslide" data-slide-to="0" class="active"></li>
+                    <li data-target="#focusslide" data-slide-to="1" ></li>
+                    <li data-target="#focusslide" data-slide-to="2" ></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    {% for b in banner %}
+                        {% if  forloop.first  %}
+                        <div class="item active">
+                        {% else %}
+                        <div class="item">
+                        {% endif %}
+                         <a href="{{ b.link_url }}" target="_blank" title="{{ b.text_info }}"><img src="/media/{{ b.img }}" alt="{{ b.text_info }}" class="img-responsive"></a>
+                         <span><strong>{{ b.text_info }}</strong></span>
+                          </div>
+                        {% endfor %}
+                        </div>
+                    <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">上一个</span>
+                    </a>
+                    <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">下一个</span>
+                    </a>
+                </div>
+                <!--今日推荐-->
+                <article class="excerpt-minic excerpt-minic-index">
+                    <h2><span class="red">【今日推荐】</span><a href="" title="">从下载看我们该如何做事</a></h2>
+                    <p class="note">一次我下载几部电影，发现如果同时下载多部要等上几个小时，然后我把最想看的做个先后排序，去设置同时只能下载一部，结果是不到一杯茶功夫我就能看到最想看的电影。
+                        这就像我们一段时间内想干成很多事情，是同时干还是有选择有顺序的干，结果很不一样。同时...</p></article>
+                <!--文章标签查询-->
+                <div class="title">
+                    <h3>{{ cname }}</h3>
+                    <div class="more">
+                        {% for t in tags %}
+                            <a href="">{{ t }}</a>
+                        {% endfor %}
+                    </div></div>
+                <!--文章检索结果-->
+                {% include 'components/blog_active.html' %}
+            </div>
+        </div>
+    </div>
+{% include 'components/aside_right.html' %}
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% load staticfiles %}
+{% load chinesetime %}
+<aside class="sidebar">
+    <div class="fixed">
+        <!公告栏-->
+        <div class="widget widget-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">网站公告</a></li>
+                <li role="presentation"><a href="#centre" aria-controls="centre" role="tab" data-toggle="tab">用户中心</a></li>
+                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">快捷设置</a></li></ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane notice active" id="notice">
+                    <ul>
+                    {% for notice in notice  %}
+                        {% if  notice.level == "sticky" %}
+                            <li><time datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a href="" target="_blank">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                        {% elif notice.level == "latest" %}
+                            <li><time style="color: #47a447" datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a style="color: #47a447"  target="_blank" href="">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                        {% else %}
+                            <li><time style="color: purple" datetime="">{{ notice.release_time|date:"Y-m-d" }}</time><a style="color: purple" target="_blank" href="">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul></div>
+                <div role="tabpanel" class="tab-pane centre" id="centre"><p>正在开发</p></div>
+                <div role="tabpanel" class="tab-pane contact" id="contact"><p>正在开发</p></div>
+            </div>
+        </div>
+        <!--搜索框-->
+        <div class="widget widget_search">
+            <form class="navbar-form" action="{% url 'blog:search' %}" method="get">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+                    <span class="input-group-btn">
+				<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+				</span></div></form>
+        </div>
+    </div>
+    {#天气#}
+    <div class="widget widget_sentence">
+        <h3>今日天气</h3>
+        <div class="widget-sentence-content">
+            <h4>{{ time|chinese_time_now }}</h4>
+            <ul id="calendar">
+                <li>📅{{ cleandes.1 }} </li>
+                <li>&nbsp{{ cleandes.0 }}</li></ul >
+            <ul id="weather">
+                <li>📍{{ add }} </li>
+                <li>🌡{{ data.high }}~{{ data.low }} <img src="{% static 'images/weathy/' %}{{ data.type }}.gif"> {{ data.type }} </li>
+                <li>风力：{{ data.fengli.9 }}-{{ data.fengli.11 }}级 风向: {{ data.fengxiang }} <strong>大风蓝色预警</strong></li></ul>
+        </div>
+    </div>
+    <div class="widget widget_hot">
+        <h3>热门文章</h3>
+        <ul>{% for t in tui %}
+            <li><a href="{% url 'blog:art' t.id  %}">
+                <span class="thumbnail"><img class="thumb" data-original="/media/{{ t.img }}" src="/media/{{ t.img }}" alt="???"></span>
+                <span class="text">{{ t.title|truncatechars:"25" }}</span>
+                <span class="muted"><i class="glyphicon glyphicon-time"></i> {{ t.create_time }} </span>
+                <span class="muted"><i class="glyphicon glyphicon-eye-open"></i> {{ t.click_nums }} </span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</aside>

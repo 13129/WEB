@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!-- 最新/分类/搜索 博客列表 -->
+{% for ablog in allblog %}
+<article class="excerpt excerpt-{% cycle '1' '2' '3' '4' '5' %}"><a class="focus" href="{% url 'blog:art' ablog.id  %}" title="">
+    <img class="thumb" data-original="/media/{{ ablog.img }}" src="/media/{{ ablog.img }}" alt=""></a>
+    <header>
+        <a class="cat" href="{% url 'blog:cate' %}">{{ ablog.category }}<i></i></a>
+            <h2><a href="{% url 'blog:art' ablog.id  %}" title="">{{ ablog.title|truncatechars:"20" }}</a></h2>
+    </header>
+    <p class="meta">
+        <time class="time"><i class="glyphicon glyphicon-time"></i> {{ ablog.create_time|date:"Y-m-d H:i:s" }}</time>
+        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{ ablog.click_nums }}</span>
+        <a class="comment" href=""><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+    <p class="note">{% autoescape on %}{{ ablog.content|truncatewords_html:10|striptags }}{% endautoescape %}</p>
+</article>
+{% endfor %}
+<!--分页-->
+<nav class="pagination">
+    <ul>
+        {% if allblog.has_previous %}
+            <li class="prev-page"><a href="?page={{ allblog.previous_page_number }}">上一页</a></li>
+        {% else %}
+            <li class="prev-page"></li>
+        {% endif %}
+
+        {% for num in allblog.paginator.page_range %}
+            {% if num %}
+                {% ifequal num allblog.number %}
+                    <li class="active"><span>{{ num }}</span></li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endifequal %}
+            {% else %}
+                <li class="disabled"><span>...</span></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if allblog.has_next %}
+            <li class="next-page"><a href="?page={{ allblog.next_page_number }}">下一页</a></li>
+        {% else %}
+            <li class="prev-page"></li>
+        {% endif %}
+    </ul>
+</nav>

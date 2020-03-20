@@ -1,0 +1,27 @@
+﻿2019-12-25-12；
+admin超级管理员user:1312
+admin超级管理员password:123456
+admin管理员_user_id:9231
+admin管理员_password:X8693585XXCH
+amdin普通用户9000
+admin普通用户XJCXJCXJC
+
+
+web---------主页
+Authlogin----登录,注册,登出,界面
+blog--------写博客,浏览,查找，
+LigthApp----相册,小功能
+爬取新闻
+通讯
+/*********主要html页面*******/
+404.html		//自定义404查询
+article.html	//文章
+base.html		//父模板
+category.html	//
+index.html		//主页
+tags.html		//标签云
+/*************************/
+/***************小模块***/
+blog_active.html	//
+wexin1.html			//微信二维码模态框
+
