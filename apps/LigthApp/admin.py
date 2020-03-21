@@ -10,7 +10,7 @@ class NoticeAdmin(admin.ModelAdmin):
 	list_display=('level','release_time','detail')
 
 class TouristfpAdmin (admin.ModelAdmin):
-	list_display = ('IP','location','end_point','count')
+	list_display = ('IP','location','start_time','count','is_lock')
 
 class LigthappAdmin (admin.ModelAdmin):
 	list_display = ('name', 'number', 'status')

@@ -30,7 +30,7 @@ SECRET_KEY = '*)7#@_pyqq7wzvdd@9^^**w4@iud356jndp(%ox(37-wdp)%)j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # 生产环境开启
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL ='Authlogin.Users'
 # Application definition
@@ -56,6 +56,7 @@ MIDDLEWARE = [
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
+	'apps.LigthApp.mymidleware.Accessfrequency',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -161,7 +162,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

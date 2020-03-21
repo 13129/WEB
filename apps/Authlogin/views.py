@@ -17,7 +17,7 @@ def register(request):
             new_user = form.save()
             # 让用户自动登录，再重定向到主页
             user = authenticate(username=new_user.username,password=request.POST['password1'])
-            LoginView.as_view(user)
+            LoginView.as_view()
             return HttpResponseRedirect(reverse('blog:index'))
     context = {'form': form}
     return render(request,'register.html', context)

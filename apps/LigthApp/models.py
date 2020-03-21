@@ -36,8 +36,10 @@ class Ligthapp (models.Model):
 class Touristfp (models.Model):
 	IP=models.CharField(verbose_name='ip',max_length=30,default='...')
 	location=models.CharField(verbose_name='ip所在地',max_length=30,default='')
-	end_point=models.CharField(verbose_name='访问端点',default='/',max_length=30)
+	start_time=models.DateTimeField(verbose_name='请求时间',default = timezone.now)
+	is_lock=models.BooleanField(verbose_name = "访问状态",default = True)#锁定为1
 	count=models.IntegerField(verbose_name='访问次数',default=0)
+
 
 	class Meta:
 		verbose_name = '访客信息'

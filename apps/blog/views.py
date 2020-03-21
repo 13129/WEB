@@ -2,9 +2,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # f分
 from django.shortcuts import render
 from .models import *
 from apps.LigthApp.models import *
-from apps.LigthApp.visit_info import change_info
 from apps.LigthApp.weather import weath,cleander
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 
 
 # 优化重复查询语句
@@ -41,10 +42,7 @@ def search (request):
 		
 
 # 主页
-from django.contrib.auth.decorators import login_required
-
 def index (request):
-	change_info(request)
 	banner = Banner.objects.filter (is_active = True) [0:3]  # 查询所有幻灯片数据并进行切片
 	allblog = Blog.objects.all ().order_by ('-id') [0:8]  # 首页最新推荐
 	tags = Tag.objects.all ().order_by ('?') [:8]  # 随机8个标签

@@ -25,6 +25,7 @@ def change_info(request):
     if ip_exist:#有相同
         Tobj=ip_exist[0]
         Tobj.count+=1
+        Tobj.start_time=timezone.now()
     else:#无相同
         url = "https://m.ip138.com/iplookup.asp?ip="
         kv = {"User-Agent": "Mozilla/5.0"}
