@@ -13,11 +13,11 @@
                     <ul>
                     {% for notice in notice  %}
                         {% if  notice.level == "sticky" %}
-                            <li><time datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a href="" target="_blank">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a href="" target="_blank">[置顶]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% elif notice.level == "latest" %}
-                            <li><time style="color: #47a447" datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a style="color: #47a447"  target="_blank" href="">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time style="color: #47a447" datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a style="color: #47a447"  target="_blank" href="">[最新]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% else %}
-                            <li><time style="color: purple" datetime="">{{ notice.release_time|date:"Y-m-d" }}</time><a style="color: purple" target="_blank" href="">[{{ notice.get_level_display }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time style="color: purple" datetime="">{{ notice.release_time|date:"Y-m-d" }}</time><a style="color: purple" target="_blank" href="">[一般]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% endif %}
                     {% endfor %}
                     </ul></div>

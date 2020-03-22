@@ -30,7 +30,7 @@ snowFall.prototype.start = function () {
     createFlakes.apply(this);
     /* 画雪 */
     drawSnow.apply(this)
-}
+};
 
 /* 创建画布 */
 function snowCanvas() {

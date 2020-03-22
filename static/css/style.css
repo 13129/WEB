@@ -633,7 +633,6 @@ body, input, button, textarea, select {
 .excerpt-minic h2 {
     font-size: 22px;
     line-height: 24px;
-    margin-top: 0;
     font-weight: bold;
     margin: 0 0 15px;
 }
@@ -985,9 +984,9 @@ body, input, button, textarea, select {
 /*文章版权*/
 .article-copyright {
     background-color: #EEE;
+    padding: 3px 0;
     padding-right: 30px;
     font-size: 12px;
-    padding: 3px 0;
     border-radius: 3px;
     color: #aaa;
     text-align: center;
@@ -1233,7 +1232,6 @@ body, input, button, textarea, select {
     right: -2px;
     bottom: -2px;
     background: #3399CC;
-    border: none;
     border: 2px solid;
     border-color: #3399CC;
     border-left: none;
@@ -2418,6 +2416,7 @@ body, input, button, textarea, select {
 @media (max-width: 950px) {
     .plinks li {
         width: 33.333334%;
+
     }
 }
 
@@ -2467,6 +2466,8 @@ body, input, button, textarea, select {
 
 .ptags li span {
     background-color: #999;
+    display: inline-block;
+    margin-right: 10%;
 }
 
 .ptags li:hover span {
@@ -2559,71 +2560,3 @@ body, input, button, textarea, select {
     display: block;
     color: #666;
 }
-
-/*登录模态框*/
-#loginModal .modal-dialog {
-    max-width: 420px;
-    margin-top: 100px;
-}
-
-#loginModal h4 {
-    cursor: default;
-    color: #3399CC;
-}
-
-#loginModal .modal-body {
-    padding: 15px 30px;
-}
-
-#loginModal .modal-body label {
-    color: #333;
-    font-size: 15px;
-    font-weight: 500;
-    width: 70px;
-    font-weight: bold;
-}
-
-#loginModal .modal-body input {
-    color: #A0A0A0;
-}
-
-#loginModal .modal-footer a {
-    padding-right: 110px;
-}
-
-/*注册*/
-#registModal .modal-dialog {
-    max-width: 420px;
-    margin-top: 100px;
-}
-
-#registModal h4 {
-    cursor: default;
-    color: #3399CC;
-}
-
-#registModal .modal-body {
-    padding: 8px 15px 8px 30px;
-}
-
-#registModal .modal-body label {
-    color: #333;
-    font-size: 15px;
-    font-weight: 500;
-    width: 70px;
-    font-weight: bold;
-}
-
-#registModal .modal-body input {
-    color: #333;
-
-}
-
-#registModal .modal-body input.btn.btn-info {
-    padding: 6px;
-}
-
-#registModal .modal-footer a {
-    padding-right: 110px;
-}
-

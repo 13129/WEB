@@ -12,16 +12,14 @@
                 <div class="article-meta">
                     <span class="item article-meta-time">
                         <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：{{ show.create_time|date:'Y-m-d H:i:s' }}"><i class="glyphicon glyphicon-time"></i> {{ show.create_time|date:"Y-m-d H:i:s" }}</time></span>
-                    <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：{{ show.name }}"><i class="glyphicon glyphicon-globe"></i> {{ show.name }}</span>
                     <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：{{ show.category }}"><i class="glyphicon glyphicon-list"></i>
                         <a href="program" title="">{{ show.category }}</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：{{ show.click_nums }}">
                         <i class="glyphicon glyphicon-eye-open"></i> {{ show.click_nums }}</span>
-                    <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span>
+                    <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="作者：{{ show.name }}"><i class="glyphicon glyphicon-user"></i>{{ show.name }}</span>
                 </div>
             </header>
             <article class="article-content">
-{#                <p><img data-original="/media/{{ show.img }} %}" src="/media/{{ show.img }}" alt=""/></p>#}
                 {{ show.content|safe }}
                 <p class="article-copyright hidden-xs">未经允许不得转载：<a href="/">XJC博客</a> » <a href="art-{{ show.id }}.html">{{ show.title }}</a></p>
             </article>

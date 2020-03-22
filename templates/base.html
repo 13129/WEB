@@ -60,7 +60,7 @@
                         欢迎, {{ user.username }}
                         <a href="{% url 'Authlogin:logout' %}">登出</a>
                         {% if user.is_staff %}
-                        <a href="admin/">站点</a>
+                        <a href="http://127.0.0.1:8000/admin/">站点</a>
                         {% endif %}
 
                     {% else %}

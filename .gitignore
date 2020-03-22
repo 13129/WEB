@@ -64,13 +64,12 @@ coverage.xml
 
 # Django stuff:
 *.log
-*.pot
 *.pyc
 __pycache__
 media
 
 
-local_settings.py
+
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
