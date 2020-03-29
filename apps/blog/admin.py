@@ -31,13 +31,18 @@ class TagAdmin (admin.ModelAdmin):
 	refresh_times = [5, 10, 20, 30, 60, 90, 120]
 
 
+# class Clicknumsinfo(admin.StackedInline):
+# 	model = Click_nums
+
 class BlogAdmin (admin.ModelAdmin):
-	list_display = ('name', 'title', 'tui','content' ,'category', 'create_time', 'modify_time',
-	                'click_nums')
+	list_display = ('name', 'title', 'tui','category', 'create_time', 'modify_time',
+	                'click_nums','tagss_list')
 	list_filter = ('name', 'create_time', 'modify_time', 'click_nums', 'category', 'tagss')
 	search_fields = ('name', 'title')  # 搜索字段
-	list_editable = ['title', 'content',] # 可更改字段
+	list_editable = ['title'] # 可更改字段
 	date_hierarchy = 'create_time'
+	fk_fields = ('category',)
+
 
 admin.site.register (Category, CategoryAdmin)
 admin.site.register (Tag, TagAdmin)

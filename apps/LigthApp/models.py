@@ -4,18 +4,7 @@ from django.utils import timezone
 # Create your models here.
 from apps.blog.storage import ImageStorage
 
-#公告栏
-notice_types = (('sticky', '置顶'), ('latest', '最新'), ('ordinary', '一般'))
-class Notice(models.Model):
-	detail = models.TextField(verbose_name="公告内容")
-	level = models.CharField(max_length=30,choices=notice_types, default='最新')
-	release_time = models.DateTimeField(verbose_name="发布时间", default=timezone.now)
-	mod_time = models.DateTimeField(verbose_name="时间", auto_now=True)
-	class Meta:
-		verbose_name='网站公告'
-		verbose_name_plural=verbose_name
-	def __str__(self):
-		return  self.detail
+
 
 # 应用
 class Ligthapp (models.Model):
@@ -32,7 +21,8 @@ class Ligthapp (models.Model):
 		return self.name
 
 
-# 游客足迹
+
+# 详细访问信息
 class Touristfp (models.Model):
 	IP=models.CharField(verbose_name='ip',max_length=30,default='...')
 	location=models.CharField(verbose_name='ip所在地',max_length=30,default='')
@@ -47,6 +37,9 @@ class Touristfp (models.Model):
 
 	def __str__ (self):  # 后台管理注册显示的类别名称
 		return self.IP
+
+
+
 #网站访问总次数
 class VisitNumber(models.Model):
 	count=models.IntegerField(verbose_name="网站访问总次数",default=0)
@@ -65,6 +58,8 @@ class DayNumber(models.Model):
 	def __str__(self):
 		return str(self.day)
 
+
+
 # 友链接
 class Link (models.Model):
 	name = models.CharField (verbose_name = '链接名字', max_length = 20)
@@ -80,4 +75,20 @@ class Link (models.Model):
 
 	def __str__ (self):  # 后台管理注册显示的类别名称
 		return self.name
-# 爬虫分析
+
+
+
+#公告栏
+notice_types = (('sticky', '置顶'), ('latest', '最新'), ('ordinary', '一般'))
+class Notice(models.Model):
+	detail = models.TextField(verbose_name="公告内容")
+	level = models.CharField(max_length=30,choices=notice_types, default='最新')
+	release_time = models.DateTimeField(verbose_name="发布时间", default=timezone.now)
+	mod_time = models.DateTimeField(verbose_name="时间", auto_now=True)
+
+	class Meta:
+		verbose_name='网站公告'
+		verbose_name_plural=verbose_name
+
+	def __str__(self):
+		return  self.detail

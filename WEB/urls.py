@@ -24,9 +24,13 @@ urlpatterns = [
 	re_path (r'^auth/', include ('apps.Authlogin.urls',namespace='Authlogin')),
 	re_path (r'^app/', include ('apps.LigthApp.urls',namespace='LigthApp')),
 ]
+
 from django.conf import settings
 if settings.DEBUG:
 	from django.conf.urls.static import static
+	import debug_toolbar
 
 	urlpatterns += static (
 		settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+	urlpatterns = [path('__debug__/', include(debug_toolbar.urls)),] + urlpatterns

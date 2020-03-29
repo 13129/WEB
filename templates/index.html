@@ -42,7 +42,7 @@
                     <h3>{{ cname }}</h3>
                     <div class="more">
                         {% for t in tags %}
-                            <a href="">{{ t }}</a>
+                            <a href="?search={{ keyword }}&tag={{ t }}">{{ t }}</a>
                         {% endfor %}
                     </div></div>
                 <!--文章检索结果-->

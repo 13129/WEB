@@ -30,11 +30,39 @@ SECRET_KEY = '*)7#@_pyqq7wzvdd@9^^**w4@iud356jndp(%ox(37-wdp)%)j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # 生产环境开启
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = []
 AUTH_USER_MODEL ='Authlogin.Users'
-# Application definition
 
+#cache 开发调试缓存配置-
+CACHES={
+	'default':{
+		'BACKEND':'django.core.cache.backends.dummy.DummyCache',    #缓存引擎
+		'TIMEOUT':300,              #缓存超时时间 None表示永不过期，0表示立即过期，默认300秒
+		'OPTIONS':{
+			'MAX_ENTRIES':300,      #最大缓存记录的数量（默认300）
+			'CULL_FREQUENCY':3,     # 缓存到达最大个数之后，剔除缓存个数的比例，即：1/CULL_FREQUENCY（默认3）
+		},
+	}
+}
+
+INTERNAL_IPS=['127.0.0.1',]#debug_toolbar配置。。。中间件
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+]
+
+
+# Application definition
 INSTALLED_APPS = [
 	'django.contrib.admin',
 	'django.contrib.auth',
@@ -45,6 +73,7 @@ INSTALLED_APPS = [
 	'blog',
 	'Authlogin',
 	'LigthApp',
+	'debug_toolbar',
 	'ckeditor',
 	'imagekit',
 	'rest_framework',
@@ -52,14 +81,15 @@ INSTALLED_APPS = [
 ]
 LOGIN_URL = '/auth/login/'
 MIDDLEWARE = [
+	'debug_toolbar.middleware.DebugToolbarMiddleware',
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
-	'apps.LigthApp.mymidleware.Accessfrequency',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'apps.LigthApp.mymidleware.Accessfrequency',
 ]
 
 ROOT_URLCONF = 'WEB.urls'
@@ -83,9 +113,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'WEB.wsgi.application'
 
-# Database
+# Database MYSQL
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-#mysql设置
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
@@ -94,9 +123,25 @@ DATABASES = {
 		'PASSWORD': '123456',  # 你的数据库密码
 		'HOST': '127.0.0.1',  # 你的数据库主机，留空默认为localhost
 		'PORT': '3306',  # 你的数据库端口
-	}
+		'TEST':{
+			'CHARSET':'utf8mb4',
+			'COLLATION':'utf8mb4_bin',
+		}
+	},
+	# 'replica':{
+	# 	'ENGINE': 'django.db.backends.mysql',
+	# 	'NAME': 'web',  # 你的数据库名称
+	# 	'USER': 'root',  # 你的数据库用户名
+	# 	'PASSWORD': '123456',  # 你的数据库密码
+	# 	'HOST': '127.0.0.1',  # 你的数据库主机，留空默认为localhost
+	# 	'PORT': '3306',
+	# 	'TEST_MIRROR': 'default',
+	# 	'TEST':{
+	# 	'CHARSET':'utf8mb4',
+	# 	'COLLATION':'utf8mb4_bin',
+	# 	}
+	#},
 }
-# 设置打印日志到屏幕
 
 
 # Password validation
@@ -153,7 +198,6 @@ CKEDITOR_CONFIGS = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'

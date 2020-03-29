@@ -23,7 +23,7 @@
                 {{ show.content|safe }}
                 <p class="article-copyright hidden-xs">未经允许不得转载：<a href="/">XJC博客</a> » <a href="art-{{ show.id }}.html">{{ show.title }}</a></p>
             </article>
-            <div class="article-tags">标签：{% for tag in show.tagss.all %}<a href="tag/" rel="tag">{{ tag.name }}</a>{% endfor %}</div>
+            <div class="article-tags">标签：{% for tag in show.tagss.all %}<a href="{% url 'blog:index' %}?search={{ keyword }}&tag={{ t }}" rel="tag">{{ tag.name }}</a>{% endfor %}</div>
             <div class="relates">
                 <div class="title">
                     <h3>相关推荐</h3>

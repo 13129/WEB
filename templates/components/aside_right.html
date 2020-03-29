@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load chinesetime %}
+{% load cache %}
 <aside class="sidebar">
     <div class="fixed">
         <!公告栏-->
@@ -13,11 +14,11 @@
                     <ul>
                     {% for notice in notice  %}
                         {% if  notice.level == "sticky" %}
-                            <li><time datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a href="" target="_blank">[置顶]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a href="" target="_blank">[{{ notice|displayName:'level' }}]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% elif notice.level == "latest" %}
-                            <li><time style="color: #47a447" datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a style="color: #47a447"  target="_blank" href="">[最新]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time style="color: #47a447" datetime="">{{  notice.release_time|date:"Y-m-d" }}</time><a style="color: #47a447"  target="_blank" href="">[notice|displayName:'level']&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% else %}
-                            <li><time style="color: purple" datetime="">{{ notice.release_time|date:"Y-m-d" }}</time><a style="color: purple" target="_blank" href="">[一般]&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
+                            <li><time style="color: purple" datetime="">{{ notice.release_time|date:"Y-m-d" }}</time><a style="color: purple" target="_blank" href="">[notice|displayName:'level']&nbsp{{ notice.detail|truncatechars:20 }}</a></li>
                         {% endif %}
                     {% endfor %}
                     </ul></div>
@@ -28,15 +29,15 @@
         <!--搜索框-->
         <div class="widget widget_search">
             <form class="navbar-form" action="{% url 'blog:search' %}" method="get">
-                {% csrf_token %}
                 <div class="input-group">
-                    <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+                    <input type="text" name="search" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
                     <span class="input-group-btn">
-				<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+				<button class="btn btn-default btn-search" type="submit">搜索</button>
 				</span></div></form>
         </div>
     </div>
-    {#天气#}
+    {#天气日历#}
+{% cache 100 sidebar %}
     <div class="widget widget_sentence">
         <h3>今日天气</h3>
         <div class="widget-sentence-content">
@@ -50,6 +51,8 @@
                 <li>风力：{{ data.fengli.9 }}-{{ data.fengli.11 }}级 风向: {{ data.fengxiang }} <strong>大风蓝色预警</strong></li></ul>
         </div>
     </div>
+{% endcache %}
+
     <div class="widget widget_hot">
         <h3>热门文章</h3>
         <ul>{% for t in tui %}
