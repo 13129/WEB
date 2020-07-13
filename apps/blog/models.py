@@ -42,7 +42,7 @@ class Banner (models.Model):
 	                           null = True,
 	                           blank = True, )
 
-	link_url = models.URLField ('图片链接', max_length = 100)
+	link_url = models.URLField ('图片链接', max_length = 1000)
 	is_active = models.BooleanField ('是否是active', default = False)
 	class Meta:
 		verbose_name = '轮播图'
