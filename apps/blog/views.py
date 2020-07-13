@@ -21,7 +21,7 @@ def global_variable (request):
 	cname = "最新文章"
 	notice=Notice.objects.only('level','release_time','detail')#查询公告
 
-	add='威海'#临时地址
+	add='莱西'#临时地址
 	data=weath(add)
 	time=timezone.now()
 	cleandes=cleander()
