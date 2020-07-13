@@ -62,5 +62,8 @@ class Accessfrequency(MiddlewareMixin):
 				elif request_time[-1] - request_time[-2]<0.01:
 					ret.is_lock=False
 
-		if not ret.is_lock:
-		 	return HttpResponse("您的IP有问题，请稍侯")
+		try:
+			if not ret.is_lock:
+				return HttpResponse("您的IP有问题，请稍侯")
+		except Exception as err:
+			print("")
