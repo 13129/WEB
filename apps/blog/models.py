@@ -85,8 +85,8 @@ class Blog (models.Model):
 		verbose_name_plural = verbose_name
 		ordering = ['-modify_time']
 
-	def increated_nums(self):#增加模型方法，缺陷：高访问下会造成数据不准
-		self.click_nums+=1
+	def increated_nums(self,nums):#增加模型方法，缺陷：高访问下会造成数据不准
+		self.click_nums = nums
 		self.save(update_fields = ['click_nums',])
 
 	def tagss_list(self):

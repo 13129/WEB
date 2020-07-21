@@ -14,16 +14,21 @@
     <a href="{% url 'Authlogin:login' %}">登录</a>
   {% endif %}
 </p>
-
-{% if form.errors %}
-    <p>您的用户名和密码不匹配,请再试一遍.</p>
-{% endif %}
-    
-<form method="post" action="{% url 'Authlogin:login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button name="submit">登录</button>
-  <input type="hidden" name="next" value="{% url 'blog:index' %}" />
+  <form method="post" action="{% url 'Authlogin:login' %}">
+    {% csrf_token %}
+    <!-- 账号 -->
+    <div class="form-group">
+        <label for="username">账号</label>
+        <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <!-- 密码 -->
+    <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" class="form-control" id="password" name="password">
+    </div>
+    <!-- 提交按钮 -->
+    <button type="submit" class="btn btn-primary">登录</button>
+    <input type="hidden" name="next" value="{% url 'blog:index' %}" />
 </form>
 </body>
 </html>

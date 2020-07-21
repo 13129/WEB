@@ -4,7 +4,7 @@
 <article class="excerpt excerpt-{% cycle '1' '2' '3' '4' '5' %}"><a class="focus" href="{% url 'blog:art' ablog.id  %}" title="">
     <img class="thumb" data-original="/media/{{ ablog.img }}" src="/media/{{ ablog.img }}" alt=""></a>
     <header>
-        <a class="cat" href="{% url 'blog:cate' %}">{{ ablog.category }}<i></i></a>
+        <a class="cat" href="{% url 'blog:cate' ablog.id %}">{{ ablog.category }}<i></i></a>
             <h2><a href="{% url 'blog:art' ablog.id  %}" title="">{{ ablog.title|truncatechars:"20" }}</a></h2>
     </header>
     <p class="meta">

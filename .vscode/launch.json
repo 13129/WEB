@@ -6,22 +6,15 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
-            "pythonPath": "${config:python.pythonPath}",
+            // "pythonPath": "${command:python.interpreterPath}",
             "program": "${workspaceRoot}/manage.py",
             "cwd": "${workspaceRoot}",
             "args": [
                 "runserver",
+                "192.168.75.128:8000",
                 "--noreload",
                 "--nothreading"
-            ],
-            "env": {},
-            "envFile": "${workspaceRoot}/.env",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput",
-                "DjangoDebugging"
-            ],
-        },
-    ],
+            ]
+        }
+    ]
 }

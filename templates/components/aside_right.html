@@ -37,7 +37,7 @@
         </div>
     </div>
     {#天气日历#}
-{% cache 100 sidebar %}
+
     <div class="widget widget_sentence">
         <h3>今日天气</h3>
         <div class="widget-sentence-content">
@@ -51,7 +51,7 @@
                 <li>风力：{{ data.fengli.9 }}-{{ data.fengli.11 }}级 风向: {{ data.fengxiang }} <strong>大风蓝色预警</strong></li></ul>
         </div>
     </div>
-{% endcache %}
+
 
     <div class="widget widget_hot">
         <h3>热门文章</h3>

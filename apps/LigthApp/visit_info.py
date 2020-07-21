@@ -1,7 +1,7 @@
 from  .models import *
 from django.db.models import F
 from django.utils import timezone
-
+from django.shortcuts import HttpResponse
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,11 +11,14 @@ from bs4 import BeautifulSoup
 def change_info(request):
     #每一次访问总访问量+1
     try:
-        count_nums=VisitNumber.objects.filter(id=1)##
+        count_nums=VisitNumber.objects.filter(id=1)
         if count_nums.exists():
+
             count_nums=count_nums[0]
             count_nums.count=F('count')+1
         else:
+            dic={"id":1,"count":1}
+            VisitNumber.objects.create(**dic)
             count_nums.count = 1
         count_nums.save()
         #记录每个IP的次数，ip地址
@@ -53,11 +56,14 @@ def change_info(request):
         if today.exists():
             today =today[0]
             today.count =F('count')+ 1
+            print("今日访问次数",today.count)
 
         else:
-            today=DayNumber()
-            today.dayTime = date
-            today.count = 1
+            # today=DayNumber()
+            # today.dayTime = date
+            # today.count = 1
+            dic_data={"day":date,"count":1}
+            today=DayNumber.objects.create(**dic_data)
         today.save()
     except Exception as err:
-        print("")
+        return HttpResponse("异常",err)

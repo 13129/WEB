@@ -9,10 +9,10 @@ from apps.blog.views import *
 
 app_name = 'blog'
 urlpatterns = [
-	re_path (r'^$', cache_page(60*15)(index), name = 'index'),  # 主页
+	re_path (r'^$', index, name = 'index'),  # 主页
 
 	re_path (r'^art/$', cache_page(60*15)(art), name='art'),
-	re_path (r'^art/(?P<art_id>\d+)/$', cache_page(60*15)(art), name = 'art'),  # 内容页
+	re_path (r'^art/(?P<art_id>\d+)/$', art, name = 'art'),  # 内容页
 
 	re_path (r'cate/$',cache_page(60*15)(cate),name='cate'),
 	re_path (r'^cate/(?P<cate_id>\d+)/$', cache_page(60*15)(cate), name = 'cate'),  # 列表
